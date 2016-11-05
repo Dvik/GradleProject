@@ -33,8 +33,18 @@ public class EndPointsAsyncTest {
     public void testBaseAPI() throws Exception {
 
         String result = null;
-        EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask(context);
+        EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask(context) {
+            @Override
+            protected void onPreExecute() {
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+            }
+        };
+
         endpointsAsyncTask.execute("");
+
         try {
             result = endpointsAsyncTask.get();
         } catch (Exception e) {
